@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/OpenWD.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/RegisterWD.unity
+    guid: 2fbed34eea6af68459c70a1c52b2c02b
+  - enabled: 1
+    path: Assets/Scenes/LoadWD.unity
+    guid: 09fd0baf7450f324498ced389308cced
+  - enabled: 1
+    path: Assets/Scenes/MainWD.unity
+    guid: 50cdab26b2628ed46af713cee0888fb6
+  m_configObjects: {}

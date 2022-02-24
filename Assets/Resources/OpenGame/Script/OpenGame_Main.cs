@@ -1,5 +1,4 @@
 using Assets.Client;
-using SCPublic;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

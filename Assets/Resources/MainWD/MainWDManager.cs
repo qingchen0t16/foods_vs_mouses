@@ -1,4 +1,6 @@
 using Assets.Client;
+using FVMIO_From_Standard2_0.Enum;
+using FVMIO_From_Standard2_0.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,32 +8,63 @@ using UnityEngine;
 public class MainWDManager : ClientMonoBehaviour
 {
     // 获取当前所有窗口
-    public Transform MainCity_UI, MainCity_Control, _Map_MeiWeidao, UserBox, MessageBox, Activity, EMail;
+    public Dictionary<string,Transform> Scenes = new Dictionary<string, Transform>();
+
     // 单例
     public static MainWDManager Instance;
 
     private void Awake()
     {
         Instance = this;
-        MainCity_UI = GameObject.Find("MainCity_UI").transform;
-        MainCity_Control = GameObject.Find("MainCity_Control").transform;
-        _Map_MeiWeidao = GameObject.Find("_Map_Meiweidao").transform;
-        UserBox = GameObject.Find("UserBox").transform;
-        MessageBox = GameObject.Find("MessageBox").transform;
-        Activity = GameObject.Find("Activity").transform;
-        EMail = GameObject.Find("EMail").transform;
+
+        // 循环获取全部场景
+        foreach (GameObject rootObj in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects())
+        {
+            if (rootObj.name.Equals("Main Camera") || rootObj.name.Equals("EventSystem"))
+                continue;
+            rootObj.SetActive(false);
+            Scenes.Add(rootObj.name, rootObj.GetComponent<Transform>());
+        }
+
+        // 显示最初应该显示的界面
+        Scenes["MainCity_UI"].gameObject.SetActive(true);
+        Scenes["MainCity_Control"].gameObject.SetActive(true);
+        Scenes["UserBox"].gameObject.SetActive(true);
+
+        // 使用测试环境
+        TestSences();
+    }
+
+    /// <summary>
+    /// 测试环境
+    /// </summary>
+    void TestSences() {
+        print("连接服务器");
+        ClientManager.Instance.Init("127.0.0.1", 25565);    // 连接到服务器
+
+        GameManager.Instance = new GameManager();
+        GameManager.Instance.User = new User();
+        GameManager.Instance.User.UserID = 5;
+        ClientManager.Instance.Respones.Send(ClientManager.Instance.Request, SendType.Text, GameManager.Instance.User.UserID.ToString(), (sp) =>
+        {
+            if (sp.GetSource<UserData>().UserID == -1)
+                GameManager.Instance.ShowMessageBox_OK(GameObject.Find("Manager").transform, "提示", "无法获取玩家数据", null, true, () =>
+                {
+                    print("无法拿到玩家数据");
+                    Application.Quit();
+                });
+            else
+            {
+                GameManager.Instance.User.UserData = sp.GetSource<UserData>();
+                print("已获取到游戏数据");
+            }
+        }, "GetUserData");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        MainCity_UI.gameObject.SetActive(true);
-        MainCity_Control.gameObject.SetActive(true);
-        _Map_MeiWeidao.gameObject.SetActive(false);
-        UserBox.gameObject.SetActive(true);
-        MessageBox.gameObject.SetActive(true);
-        Activity.gameObject.SetActive(false);
-        EMail.gameObject.SetActive(false);
+        
     }
 
     public override void _Update()

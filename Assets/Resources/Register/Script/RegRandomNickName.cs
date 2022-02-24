@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Assets.Client;
+using FVMIO_From_Standard2_0.Enum;
 
 /// <summary>
 /// 随机生成昵称
@@ -17,7 +18,7 @@ public class RegRandomNickName : MonoBehaviour,IPointerClickHandler
     {
         MessageBoxOK_ShowMessaage ms = GameManager.Instance.ShowMessageBox_OK(GameObject.Find("Manager").transform, "提示", "等待服务器响应", null, false);
 
-        ClientManager.Instance.Respones.Send<string>(ClientManager.Instance.Request, SCPublic.SendType.Text, RegManager.Instance.IsMan ? "男" : "女", (sp) =>
+        ClientManager.Instance.Respones.Send<string>(ClientManager.Instance.Request, SendType.Text, RegManager.Instance.IsMan ? "男" : "女", (sp) =>
         {
             EventProcessor.QueueEvent(() =>
             {

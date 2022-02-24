@@ -1,7 +1,4 @@
-using Assets.Client;
-using SCPublic;
-using System.Collections;
-using System.Collections.Generic;
+using FVMIO_From_Standard2_0.Model;
 using UnityEngine;
 using UnityEngine.UI;
 

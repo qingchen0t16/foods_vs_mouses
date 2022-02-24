@@ -7,6 +7,6 @@ public class MailBtn : MonoBehaviour,IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData eventData)
     {
-        MainWDManager.Instance.EMail.gameObject.SetActive(true);
+        MainWDManager.Instance.Scenes["EMail"].gameObject.SetActive(true);
     }
 }

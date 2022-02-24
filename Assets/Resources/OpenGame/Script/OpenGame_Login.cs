@@ -1,5 +1,6 @@
 using Assets.Client;
-using SCPublic;
+using FVMIO_From_Standard2_0.Enum;
+using FVMIO_From_Standard2_0.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -41,7 +42,7 @@ public class OpenGame_Login : MonoBehaviour, IPointerClickHandler
         }
         MessageBoxOK_ShowMessaage ms = GameManager.Instance.ShowMessageBox_OK(GameObject.Find("OpenGame/Manager").transform, "提示", "正在登录至服务器", null, false);
 
-        ClientManager.Instance.Respones.Send<UserLogin>(ClientManager.Instance.Request, SCPublic.SendType.Object, new UserLogin
+        ClientManager.Instance.Respones.Send<UserLogin>(ClientManager.Instance.Request, SendType.Object, new UserLogin
         {
             Account = account,
             Password = password

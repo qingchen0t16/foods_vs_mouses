@@ -1,5 +1,6 @@
 using Assets.Client;
-using SCPublic;
+using FVMIO_From_Standard2_0.Enum;
+using FVMIO_From_Standard2_0.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ public class LoadManager : ClientMonoBehaviour
     /// 获取玩家数据
     /// </summary>
     public void GetUserData() {
-        ClientManager.Instance.Respones.Send<string>(ClientManager.Instance.Request, SCPublic.SendType.Text, GameManager.Instance.User.UserID.ToString(), (sp) =>
+        ClientManager.Instance.Respones.Send<string>(ClientManager.Instance.Request, SendType.Text, GameManager.Instance.User.UserID.ToString(), (sp) =>
         {
             EventProcessor.QueueEvent(() =>
             {

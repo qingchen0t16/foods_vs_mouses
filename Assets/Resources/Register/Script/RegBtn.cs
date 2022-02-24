@@ -1,5 +1,6 @@
 using Assets.Client;
-using SCPublic;
+using FVMIO_From_Standard2_0.Enum;
+using FVMIO_From_Standard2_0.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -57,7 +58,7 @@ public class RegBtn : MonoBehaviour, IPointerClickHandler
         MessageBoxOK_ShowMessaage ms = GameManager.Instance.ShowMessageBox_OK(GameObject.Find("Manager").transform, "提示", "正在注册...", null, false);
         try
         {
-            ClientManager.Instance.Respones.Send<RegData>(ClientManager.Instance.Request, SCPublic.SendType.Object, new RegData
+            ClientManager.Instance.Respones.Send<RegData>(ClientManager.Instance.Request, SendType.Object, new RegData
             {
                 Account = account.text,
                 NickName = nickName.text,

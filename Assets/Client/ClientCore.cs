@@ -1,12 +1,10 @@
-﻿using SCPublic;
-using SCPublic.API;
+﻿using FVMIO_From_Standard2_0.API;
+using FVMIO_From_Standard2_0.Enum;
+using FVMIO_From_Standard2_0.Model;
+using FVMIO_From_Standard2_0.Package;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Client
 {

@@ -58,6 +58,7 @@ public class OpenGame_Login : MonoBehaviour, IPointerClickHandler
                 {
                     GameManager.Instance.User.UserID = int.Parse(cmd[1]);
                     SceneManager.LoadScene("LoadWD");
+
                 }
             });
         }, "Login");

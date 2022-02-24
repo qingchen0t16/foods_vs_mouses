@@ -20,7 +20,7 @@ public class MainWDManager : ClientMonoBehaviour
         // 循环获取全部场景
         foreach (GameObject rootObj in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects())
         {
-            if (rootObj.name.Equals("Main Camera") || rootObj.name.Equals("EventSystem"))
+            if (rootObj.name.Equals("Manager") || rootObj.name.Equals("Main Camera") || rootObj.name.Equals("EventSystem"))
                 continue;
             rootObj.SetActive(false);
             Scenes.Add(rootObj.name, rootObj.GetComponent<Transform>());
@@ -31,8 +31,6 @@ public class MainWDManager : ClientMonoBehaviour
         Scenes["MainCity_Control"].gameObject.SetActive(true);
         Scenes["UserBox"].gameObject.SetActive(true);
 
-        // 使用测试环境
-        TestSences();
     }
 
     /// <summary>
@@ -57,18 +55,20 @@ public class MainWDManager : ClientMonoBehaviour
             {
                 GameManager.Instance.User.UserData = sp.GetSource<UserData>();
                 print("已获取到游戏数据");
+                EventProcessor.QueueEvent(() =>
+                {
+                    UserBoxManager.Instance.PanelUpDate(GameManager.Instance.User.UserData);    // 刷新面板
+                });
+                
             }
         }, "GetUserData");
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        // 使用测试环境
+        TestSences();
         
-    }
-
-    public override void _Update()
-    {
     }
 
     public override void OnDesconnected()
@@ -76,5 +76,9 @@ public class MainWDManager : ClientMonoBehaviour
         GameManager.Instance.ShowMessageBox_OK(GameObject.Find("Manager").transform, "提示", "与服务器连接已断开", null, true, () => {
             Application.Quit();
         });
+    }
+
+    public override void _Update()
+    {
     }
 }

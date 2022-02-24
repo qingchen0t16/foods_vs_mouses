@@ -14,9 +14,9 @@ public class RegManager : ClientMonoBehaviour
     {
         // 绑定组件
         Instance = this;
-        options = new List<RegSelected_Sex>();
-        options.Add(transform.Find("Man").GetComponent<RegSelected_Sex>());
-        options.Add(transform.Find("WoMan").GetComponent<RegSelected_Sex>());
+        options = new List<RegSelected_Sex> ();
+        options.Add (transform.Find("Man").GetComponent<RegSelected_Sex>());
+        options.Add (transform.Find("WoMan").GetComponent<RegSelected_Sex>());
     }
 
     /// <summary>
@@ -28,8 +28,7 @@ public class RegManager : ClientMonoBehaviour
     /// 设置选中
     /// </summary>
     /// <param name="isMan"></param>
-    public void SetSelected(bool isMan)
-    {
+    public void SetSelected(bool isMan) {
         options[0].Selected = isMan ? true : false;
         options[1].Selected = isMan ? false : true;
         IsMan = isMan;
@@ -50,8 +49,11 @@ public class RegManager : ClientMonoBehaviour
 
     public override void _Update()
     {
-
+        
     }
 
-   
+    public override void _Start()
+    {
+        throw new System.NotImplementedException();
+    }
 }

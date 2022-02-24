@@ -9,6 +9,8 @@ namespace Assets.Client
 {
     public abstract class ClientMonoBehaviour : MonoBehaviour
     {
+        
+
         private void Update()
         {
             if (ClientManager.Instance.Open && !ClientManager.Instance.Request.Connected)
@@ -29,5 +31,6 @@ namespace Assets.Client
         /// 与 Update() 无异
         /// </summary>
         public abstract void _Update();
+
     }
 }

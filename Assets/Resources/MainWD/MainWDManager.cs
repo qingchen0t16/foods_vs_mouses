@@ -43,7 +43,7 @@ public class MainWDManager : ClientMonoBehaviour
         GameManager.Instance = new GameManager();
         GameManager.Instance.User = new User();
         GameManager.Instance.User.UserID = 5;
-        ClientManager.Instance.Respones.Send(ClientManager.Instance.Request, SendType.Text, GameManager.Instance.User.UserID.ToString(), (sp) =>
+        ClientManager.Instance.Respones.Send(ClientManager.Instance.Request, SendType.Text, GameManager.Instance.User.UserID.ToString(), endReceive: (sp) =>
         {
             if (sp.GetSource<UserData>().UserID == -1)
                 GameManager.Instance.ShowMessageBox_OK(GameObject.Find("Manager").transform, "提示", "无法获取玩家数据", null, true, () =>
@@ -61,7 +61,7 @@ public class MainWDManager : ClientMonoBehaviour
                 });
                 
             }
-        }, "GetUserData");
+        }, header:"GetUserData");
     }
 
     private void Start()

@@ -64,7 +64,7 @@ public class RegBtn : MonoBehaviour, IPointerClickHandler
                 NickName = nickName.text,
                 Password = password.text,
                 Sex = RegManager.Instance.IsMan ? "ÄÐ" : "Å®"
-            }, (sp) =>
+            }, endReceive: (sp) =>
             {
                 EventProcessor.QueueEvent(() =>
                 {
@@ -78,7 +78,7 @@ public class RegBtn : MonoBehaviour, IPointerClickHandler
                     else
                         GetComponent<Button>().interactable = true;
                 });
-            }, "Register");
+            }, header:"Register");
         }
         catch (System.Exception)
         {

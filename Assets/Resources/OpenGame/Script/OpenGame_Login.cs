@@ -16,7 +16,7 @@ public class OpenGame_Login : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        
+
         if (!GetComponent<Button>().interactable)
             return;
         GetComponent<Button>().interactable = false;
@@ -46,7 +46,7 @@ public class OpenGame_Login : MonoBehaviour, IPointerClickHandler
         {
             Account = account,
             Password = password
-        }, (sp) =>
+        }, endReceive: (sp) =>
         {
             EventProcessor.QueueEvent(() =>
             {
@@ -61,7 +61,7 @@ public class OpenGame_Login : MonoBehaviour, IPointerClickHandler
 
                 }
             });
-        }, "Login");
+        }, header: "Login");
     }
 
 

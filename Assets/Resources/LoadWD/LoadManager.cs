@@ -41,7 +41,7 @@ public class LoadManager : ClientMonoBehaviour
     /// 获取玩家数据
     /// </summary>
     public void GetUserData() {
-        ClientManager.Instance.Respones.Send<string>(ClientManager.Instance.Request, SendType.Text, GameManager.Instance.User.UserID.ToString(), (sp) =>
+        ClientManager.Instance.Respones.Send<string>(ClientManager.Instance.Request, SendType.Text, GameManager.Instance.User.UserID.ToString(), endReceive:(sp) =>
         {
             EventProcessor.QueueEvent(() =>
             {
@@ -57,7 +57,7 @@ public class LoadManager : ClientMonoBehaviour
                     StartCoroutine(Load());
                 }
             });
-        }, "GetUserData");
+        }, header: "GetUserData");
     }
 
     IEnumerator Load()

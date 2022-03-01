@@ -18,7 +18,7 @@ public class RegRandomNickName : MonoBehaviour,IPointerClickHandler
     {
         MessageBoxOK_ShowMessaage ms = GameManager.Instance.ShowMessageBox_OK(GameObject.Find("Manager").transform, "提示", "等待服务器响应", null, false);
 
-        ClientManager.Instance.Respones.Send<string>(ClientManager.Instance.Request, SendType.Text, RegManager.Instance.IsMan ? "男" : "女", (sp) =>
+        ClientManager.Instance.Respones.Send<string>(ClientManager.Instance.Request, SendType.Text, RegManager.Instance.IsMan ? "男" : "女", endReceive:(sp) =>
         {
             EventProcessor.QueueEvent(() =>
             {
@@ -26,7 +26,7 @@ public class RegRandomNickName : MonoBehaviour,IPointerClickHandler
                 Debug.Log(sp.GetSource<string>());
                 NickName.text = sp.GetSource<string>();
             });
-        }, "GetRandomName");
+        }, header:"GetRandomName");
     }
 
     private void Awake()

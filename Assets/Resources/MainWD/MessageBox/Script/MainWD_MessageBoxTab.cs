@@ -52,7 +52,7 @@ public class MainWD_MessageBoxTab : MonoBehaviour, IPointerClickHandler
     {
         yield return new WaitForEndOfFrame();
         LayoutRebuilder.ForceRebuildLayoutImmediate(transform.Find("Content/MessageGroup").GetComponent<RectTransform>());
-        
+
     }
 
     // 滚动条到最底部
@@ -94,21 +94,23 @@ public class MainWD_MessageBoxTab : MonoBehaviour, IPointerClickHandler
     /// <summary>
     /// 增加消息
     /// </summary>
+    [System.Obsolete]
     public void PushText(SendMessage data)
     {
         btm = transform.Find("Content").GetComponent<ScrollRect>().verticalScrollbar.value <= 0.1 || transform.Find("Content").GetComponent<ScrollRect>().verticalScrollbar.value >= 0.9;
 
-        switch (data.SendType) {
+        switch (data.SendType)
+        {
             case "公众":
                 SpanMessage().Init(data.Message);
                 break;
             case "系统":
-                SpanMessage().Init(data.Message, new Color(193, 61, 100, 100),true);
+                SpanMessage().Init(data.Message, new Color(193, 61, 100, 100), true);
                 break;
         }
         //transform.Find("Content/Text").GetComponent<Text>().text += $"{(transform.Find("Content/Text").GetComponent<Text>().text != "" ? "\n" : "")}{content}";
 
-        
+
         if (btm && gameObject.active)
             StartCoroutine("InsSrollBar");
     }
@@ -124,6 +126,6 @@ public class MainWD_MessageBoxTab : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

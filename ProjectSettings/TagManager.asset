@@ -44,6 +44,9 @@ TagManager:
   - name: Conf
     uniqueID: 3863727109
     locked: 0
+  - name: Food
+    uniqueID: 931751513
+    locked: 0
   - name: UI
     uniqueID: 3443002957
     locked: 0

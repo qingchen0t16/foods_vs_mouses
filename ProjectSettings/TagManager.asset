@@ -47,6 +47,9 @@ TagManager:
   - name: Food
     uniqueID: 931751513
     locked: 0
+  - name: Fire
+    uniqueID: 2978729017
+    locked: 0
   - name: UI
     uniqueID: 3443002957
     locked: 0

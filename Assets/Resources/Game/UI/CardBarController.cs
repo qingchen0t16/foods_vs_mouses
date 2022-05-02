@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
+using Assets.Resources.Game.Food.Script;
 
 public class CardBarController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,IPointerClickHandler
 {
@@ -26,11 +27,42 @@ public class CardBarController : MonoBehaviour, IPointerEnterHandler, IPointerEx
             }
         }
     }
+    private bool wantPlace;  // 是否需要放置
+    public bool WantPlace {
+        get => wantPlace;
+        set {
+            wantPlace = value;
+            if (wantPlace)
+            {
+                food = GameObject.Instantiate<GameObject>(FoodManager.Instance.GetFoodByType(FoodType.xiaohuolu), Vector3.zero, Quaternion.identity, GameObject.Find("Game/GridManager").transform);
+            }
+            else
+            {
+                if (food is null)
+                    return;
+                Destroy(food.gameObject);
+                food = null;
+            }
+        }
+    }
+    private GameObject food;    // 创建的植物
+    private GameObject gridFood;    // 网格中透明的植物
 
     private void Start()
     {
         maskImg = transform.Find("Mask").GetComponent<Image>();
         CanPlace = false;
+        //WantPlace = false;
+    }
+
+    private void Update()
+    {
+        if (WantPlace && food != null)
+        {
+            // 放置食物状态,欲放置食物不为空
+            Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            food.transform.position = new Vector3(mousePoint.x, mousePoint.y,0);
+        }
     }
 
     /// <summary>
@@ -63,7 +95,8 @@ public class CardBarController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         if (!CanPlace)  // 无法使用时
             return;
-        print("123");
+        if (!WantPlace)
+            WantPlace = true;
 
     }
 

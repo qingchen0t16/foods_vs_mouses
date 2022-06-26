@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Conf
+  - 
   - Water
   - UI
   - 
@@ -41,21 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Conf
-    uniqueID: 3863727109
-    locked: 0
   - name: Food
-    uniqueID: 931751513
+    uniqueID: 2325265013
     locked: 0
   - name: Fire
-    uniqueID: 2978729017
+    uniqueID: 2381078491
     locked: 0
   - name: UI
-    uniqueID: 3443002957
-    locked: 0
-  - name: Activity
-    uniqueID: 3064135417
-    locked: 0
-  - name: Dialog
-    uniqueID: 3578788549
+    uniqueID: 1430599937
     locked: 0

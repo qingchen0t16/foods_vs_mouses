@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74276410601af8e41aa1c877ebfa99cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 1acaecda32b6f644f90a9387c1ec4a88, type: 3}
   m_Name: GameingConf
   m_EditorClassIdentifier: 
-  Pf_Fire: {fileID: 607387588182968599, guid: 9177e7374ff18ee4d8c9284d94671dac, type: 3}
-  Pf_Food:
-  - {fileID: 5686508936479457592, guid: 8c8eb81f9831be347959012ac3b5d14f, type: 3}
+  Fire: {fileID: 278408162646057102, guid: 7b8f3f0ad4c33c048b71204405cb00cf, type: 3}
+  Foods:
+  - {fileID: 980444912662153818, guid: fc2eae9f29fec754094f22f1142ea249, type: 3}
